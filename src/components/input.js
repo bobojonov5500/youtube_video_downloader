@@ -6,7 +6,7 @@ const Input = () => {
   const [inputvalue, setInputvalue] = useState("");
   const handlersubmit = (e) => {
     e.preventDefault();
-    if (inputvalue) {
+    if (inputvalue.trim()) {
       const id = inputvalue.slice(inputvalue.indexOf("=") + 1);
       navigate(`/youtube/${id}`);
     }

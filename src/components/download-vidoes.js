@@ -19,13 +19,28 @@ const Download = () => {
     <>
       {isLoading ? (
         <h3>Loading...</h3>
-      ) : (
+      ) : data && data?.status ? (
         <div className="bg-transparent">
           <div className="flex flex-col ">
             <div className=" overflow-x-auto">
               <div className="p-1.5 inline-block align-middle">
                 <div className="overflow-hidden">
-                  <table className=" ">
+                  {
+                    <div className="flex  mt-3 gap-3">
+                      <div className="max-w-[400px]">
+                        <img
+                          className="object-cover"
+                          src={data?.thumbnails.at(-1)?.url}
+                          alt="#"
+                        />
+                      </div>
+                      <div className="text-left">
+                        <p>{data?.channel?.name}</p>
+                        <p>{data?.title}</p>
+                      </div>
+                    </div>
+                  }
+                  <table className="border w-[400px] mt-3 mx-auto ">
                     <tbody>
                       {data?.videos?.items?.map((item, index) => (
                         <tr key={index}>
@@ -52,6 +67,8 @@ const Download = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <h2 className="font-bold mt-4">video topilmadi 😢 </h2>
       )}
     </>
   );
